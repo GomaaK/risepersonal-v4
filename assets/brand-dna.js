@@ -11,20 +11,20 @@
     { f: "A", r: 1, t: "I naturally tune in to how the people around me are feeling." },
     { f: "N", r: 0, t: "I stay calm and clear-headed under pressure." },
     { f: "O", r: 1, t: "I am drawn to unusual ideas, art, and perspectives others find strange." },
-    { f: "C", r: 1, t: "People can rely on me to deliver what I promised, on time." },
-    { f: "E", r: 1, t: "I am comfortable speaking first in a room full of people." },
+    { f: "C", r: 0, t: "I often leave important things until the last minute." },
+    { f: "E", r: 0, t: "Long stretches around many people leave me drained." },
     { f: "A", r: 1, t: "I give people the benefit of the doubt." },
     { f: "N", r: 1, t: "I replay worries in my mind long after the moment has passed." },
     { f: "O", r: 0, t: "I prefer familiar routines over experimenting with new approaches." },
-    { f: "C", r: 0, t: "I often leave important things until the last minute." },
+    { f: "C", r: 1, t: "People can rely on me to deliver what I promised, on time." },
     { f: "E", r: 0, t: "I would rather observe quietly than take the stage." },
+    { f: "A", r: 1, t: "People often come to me for comfort or support." },
+    { f: "N", r: 0, t: "Criticism rarely rattles me." },
     { f: "A", r: 0, t: "I enjoy a sharp debate, even when it makes waves." },
     { f: "N", r: 1, t: "A small setback can colour my entire day." },
-    { f: "O", r: 1, t: "I often question the usual way of doing things and imagine a better one." },
     { f: "C", r: 1, t: "I work best with structure: lists, systems, and clear next steps." },
-    { f: "E", r: 0, t: "Long stretches around many people leave me drained." },
-    { f: "A", r: 1, t: "People often come to me for comfort or support." },
-    { f: "N", r: 0, t: "Criticism rarely rattles me." }
+    { f: "O", r: 1, t: "I often question the usual way of doing things and imagine a better one." },
+    { f: "E", r: 1, t: "I am comfortable speaking first in a room full of people." }
   ];
 
   var LIKERT = ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"];
@@ -55,18 +55,380 @@
 
   /* ---------- Data: the 12 archetypes (profile = ideal O/C/E/A/N 0–100) ---------- */
   var ARCHETYPES = [
-    { id: "sage", num: 1, name: "The Sage", essence: "The thought leader and teacher: people come to you to understand what things mean.", work: "Sharing your ideas publicly: the world needs your thinking out loud.", wellness: "Deep work & meditation", words: ["Insightful", "Grounded", "Wise"], roles: ["essence", "human", "impact"], profile: { O: 80, C: 75, E: 30, A: 55, N: 45 }, keys: ["O", "C"], fusion: "Deep work and meditation keep your clarity sharp: a Sage’s brand only holds when the mind behind it is rested." },
-    { id: "creator", num: 2, name: "The Creator", essence: "The artist and builder: you exist to make things that didn’t exist before.", work: "Finishing and shipping: done is the masterpiece your ideas are waiting for.", wellness: "Flow states", words: ["Original", "Visionary", "Crafted"], roles: ["essence", "impact", "human"], profile: { O: 95, C: 50, E: 45, A: 78, N: 55 }, keys: ["O", "A"], fusion: "Flow states are your strategy: your best brand moves arrive when the making feels like play." },
-    { id: "ruler", num: 3, name: "The Ruler", essence: "The executive authority: composed command is your natural register.", work: "Generous leadership: share the stage, and the crown grows.", wellness: "Energy management", words: ["Commanding", "Composed", "Sovereign"], roles: ["impact", "human", "essence"], profile: { O: 55, C: 88, E: 82, A: 45, N: 20 }, keys: ["C", "E", "N"], fusion: "Energy management is the crown jewel: protect it, and composure becomes your brand signature." },
-    { id: "hero", num: 4, name: "The Hero", essence: "The achiever: proof, momentum and results follow you.", work: "Sustainable pace: a long campaign beats a brilliant sprint.", wellness: "Discipline & fitness", words: ["Relentless", "Bold", "Proven"], roles: ["essence", "impact", "human"], profile: { O: 55, C: 85, E: 78, A: 50, N: 75 }, keys: ["C", "E", "N"], fusion: "Discipline and fitness keep the engine honest: your brand promises proof, so train like it." },
-    { id: "explorer", num: 5, name: "The Explorer", essence: "The founder-nomad: new territory is your natural habitat.", work: "Rooted storytelling: bring the journey home so people can follow it.", wellness: "Nature & movement", words: ["Free", "Curious", "Untamed"], roles: ["essence", "human", "impact"], profile: { O: 85, C: 45, E: 55, A: 25, N: 50 }, keys: ["O", "A"], fusion: "Nature and movement reset your compass: the Explorer’s brand stays true only at full breath." },
-    { id: "magician", num: 6, name: "The Magician", essence: "The innovator: you see around corners and make the impossible feel inevitable.", work: "Focus over novelty: choose the one trick and master it.", wellness: "Creation rituals", words: ["Transformative", "Magnetic", "Visionary"], roles: ["impact", "human", "essence"], profile: { O: 95, C: 50, E: 80, A: 45, N: 50 }, keys: ["O", "E"], fusion: "Creation rituals turn sparks into fire: ritual, not mood, feeds the Magician’s brand." },
-    { id: "lover", num: 7, name: "The Lover", essence: "The aesthetic and lifestyle authority: beauty is how you make people feel valued.", work: "Discernment: say no beautifully, so every yes means more.", wellness: "Self-care as strategy", words: ["Magnetic", "Refined", "Warm"], roles: ["impact", "essence", "human"], profile: { O: 82, C: 50, E: 75, A: 85, N: 45 }, keys: ["O", "E", "A"], fusion: "Self-care is your strategy, not your indulgence: the Lover’s brand glows from the inside out." },
-    { id: "jester", num: 8, name: "The Jester", essence: "The entertainer: light is your tool and joy your medium.", work: "Depth alongside humour: let them laugh, then let them think.", wellness: "Play & joy", words: ["Electric", "Witty", "Alive"], roles: ["impact", "essence", "human"], profile: { O: 65, C: 45, E: 88, A: 55, N: 25 }, keys: ["E", "N"], fusion: "Play and joy are the maintenance plan: a Jester running on empty loses the spark that makes the brand." },
-    { id: "everyman", num: 9, name: "The Everyman", essence: "The relatable expert: you lead by being real, and real is rare.", work: "Standing out: your plain-spoken clarity is the differentiator; own it.", wellness: "Rhythm & balance", words: ["Real", "Trusted", "Grounded"], roles: ["essence", "impact", "human"], profile: { O: 50, C: 55, E: 50, A: 85, N: 45 }, keys: ["A"], fusion: "Rhythm and balance keep you credible: the Everyman’s brand is a marathon walked with your people." },
-    { id: "caregiver", num: 10, name: "The Caregiver", essence: "The coach and healer: people feel safer having you in their corner.", work: "Boundaries and visibility: you can’t pour from a brand that hides.", wellness: "Rest & boundaries", words: ["Caring", "Wise", "Safe"], roles: ["essence", "impact", "human"], profile: { O: 55, C: 60, E: 50, A: 92, N: 70 }, keys: ["A", "N"], fusion: "Rest and boundaries are part of the work: a Caregiver with margins can hold everyone, including themselves." },
-    { id: "innocent", num: 11, name: "The Innocent", essence: "The optimistic minimalist: clarity and honesty are your aesthetic.", work: "A bolder voice: your calm deserves volume, too.", wellness: "Mindfulness & simplicity", words: ["Pure", "Honest", "Calm"], roles: ["impact", "essence", "human"], profile: { O: 60, C: 55, E: 45, A: 65, N: 15 }, keys: ["N", "O"], fusion: "Mindfulness and simplicity are your competitive edge: in a noisy market, your calm is the brand." },
-    { id: "outlaw", num: 12, name: "The Outlaw", essence: "The disruptor: you break the pattern so something better can take its place.", work: "Coalition-building: even revolutions need allies.", wellness: "Channeling intensity", words: ["Fearless", "Unfiltered", "Disruptive"], roles: ["essence", "impact", "human"], profile: { O: 90, C: 45, E: 80, A: 20, N: 55 }, keys: ["O", "E", "A"], fusion: "Channel the intensity: an Outlaw’s brand burns bright only when the fire is aimed." }
+    {
+      "id": "sage",
+      "num": 1,
+      "name": "The Sage",
+      "essence": "The thought leader and teacher: people come to you to understand what things mean.",
+      "work": "Sharing your ideas publicly: the world needs your thinking out loud.",
+      "wellness": "Deep work & meditation",
+      "words": [
+        "Insightful",
+        "Grounded",
+        "Wise"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 80,
+        "C": 75,
+        "E": 30,
+        "A": 55,
+        "N": 45
+      },
+      "keys": [
+        "O",
+        "C"
+      ],
+      "fusion": "Deep work and meditation keep your clarity sharp: a Sage’s brand only holds when the mind behind it is rested.",
+      "off": 2
+    },
+    {
+      "id": "creator",
+      "num": 2,
+      "name": "The Creator",
+      "essence": "The artist and builder: you exist to make things that didn’t exist before.",
+      "work": "Finishing and shipping: done is the masterpiece your ideas are waiting for.",
+      "wellness": "Flow states",
+      "words": [
+        "Original",
+        "Generous",
+        "Distinctive"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 95,
+        "C": 50,
+        "E": 45,
+        "A": 78,
+        "N": 55
+      },
+      "keys": [
+        "O",
+        "A"
+      ],
+      "fusion": "Flow states are your strategy: your best brand moves arrive when the making feels like play.",
+      "off": 0
+    },
+    {
+      "id": "ruler",
+      "num": 3,
+      "name": "The Ruler",
+      "essence": "The executive authority: composed command is your natural register.",
+      "work": "Generous leadership: share the stage, and the crown grows.",
+      "wellness": "Energy management",
+      "words": [
+        "Purposeful",
+        "Composed",
+        "Commanding"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 55,
+        "C": 88,
+        "E": 82,
+        "A": 45,
+        "N": 20
+      },
+      "keys": [
+        "C",
+        "E",
+        "N"
+      ],
+      "fusion": "Energy management is the crown jewel: protect it, and composure becomes your brand signature.",
+      "off": 0
+    },
+    {
+      "id": "hero",
+      "num": 4,
+      "name": "The Hero",
+      "essence": "The achiever: proof, momentum and results follow you.",
+      "work": "Sustainable pace: a long campaign beats a brilliant sprint.",
+      "wellness": "Discipline & fitness",
+      "words": [
+        "Resolute",
+        "Proven",
+        "Bold"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 55,
+        "C": 85,
+        "E": 78,
+        "A": 50,
+        "N": 50
+      },
+      "keys": [
+        "C",
+        "E"
+      ],
+      "fusion": "Discipline and fitness keep the engine honest: your brand promises proof, so train like it.",
+      "off": 0
+    },
+    {
+      "id": "explorer",
+      "num": 5,
+      "name": "The Explorer",
+      "essence": "The founder-nomad: new territory is your natural habitat.",
+      "work": "Rooted storytelling: bring the journey home so people can follow it.",
+      "wellness": "Nature & movement",
+      "words": [
+        "Free",
+        "Open",
+        "Untamed"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 85,
+        "C": 45,
+        "E": 55,
+        "A": 40,
+        "N": 50
+      },
+      "keys": [
+        "O",
+        "A"
+      ],
+      "fusion": "Nature and movement reset your compass: the Explorer’s brand stays true only at full breath.",
+      "off": 3
+    },
+    {
+      "id": "magician",
+      "num": 6,
+      "name": "The Magician",
+      "essence": "The innovator: you see around corners and make the impossible feel inevitable.",
+      "work": "Focus over novelty: choose the one trick and master it.",
+      "wellness": "Creation rituals",
+      "words": [
+        "Visionary",
+        "Intuitive",
+        "Transformative"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 95,
+        "C": 50,
+        "E": 80,
+        "A": 45,
+        "N": 50
+      },
+      "keys": [
+        "O",
+        "E"
+      ],
+      "fusion": "Creation rituals turn sparks into fire: ritual, not mood, feeds the Magician’s brand.",
+      "off": -3
+    },
+    {
+      "id": "lover",
+      "num": 7,
+      "name": "The Lover",
+      "essence": "The aesthetic and lifestyle authority: beauty is how you make people feel valued.",
+      "work": "Discernment: say no beautifully, so every yes means more.",
+      "wellness": "Self-care as strategy",
+      "words": [
+        "Refined",
+        "Warm",
+        "Magnetic"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 82,
+        "C": 50,
+        "E": 75,
+        "A": 85,
+        "N": 45
+      },
+      "keys": [
+        "O",
+        "E",
+        "A"
+      ],
+      "fusion": "Self-care is your strategy, not your indulgence: the Lover’s brand glows from the inside out.",
+      "off": -3
+    },
+    {
+      "id": "jester",
+      "num": 8,
+      "name": "The Jester",
+      "essence": "The entertainer: light is your tool and joy your medium.",
+      "work": "Depth alongside humour: let them laugh, then let them think.",
+      "wellness": "Play & joy",
+      "words": [
+        "Witty",
+        "Disarming",
+        "Electric"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 65,
+        "C": 45,
+        "E": 88,
+        "A": 55,
+        "N": 25
+      },
+      "keys": [
+        "E",
+        "N"
+      ],
+      "fusion": "Play and joy are the maintenance plan: a Jester running on empty loses the spark that makes the brand.",
+      "off": 0
+    },
+    {
+      "id": "everyman",
+      "num": 9,
+      "name": "The Everyman",
+      "essence": "The relatable expert: you lead by being real, and real is rare.",
+      "work": "Standing out: your plain-spoken clarity is the differentiator; own it.",
+      "wellness": "Rhythm & balance",
+      "words": [
+        "Real",
+        "Trusted",
+        "Plain-spoken"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 50,
+        "C": 55,
+        "E": 50,
+        "A": 85,
+        "N": 45
+      },
+      "keys": [
+        "A"
+      ],
+      "fusion": "Rhythm and balance keep you credible: the Everyman’s brand is a marathon walked with your people.",
+      "off": 8
+    },
+    {
+      "id": "caregiver",
+      "num": 10,
+      "name": "The Caregiver",
+      "essence": "The coach and guide: people feel safer having you in their corner.",
+      "work": "Boundaries and visibility: you can’t pour from a brand that hides.",
+      "wellness": "Rest & boundaries",
+      "words": [
+        "Caring",
+        "Safe",
+        "Steadfast"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 55,
+        "C": 60,
+        "E": 50,
+        "A": 92,
+        "N": 55
+      },
+      "keys": [
+        "A",
+        "N"
+      ],
+      "fusion": "Rest and boundaries are part of the work: a Caregiver with margins can hold everyone, including themselves.",
+      "off": 0
+    },
+    {
+      "id": "innocent",
+      "num": 11,
+      "name": "The Innocent",
+      "essence": "The optimistic minimalist: clarity and honesty are your aesthetic.",
+      "work": "A bolder voice: your calm deserves volume, too.",
+      "wellness": "Mindfulness & simplicity",
+      "words": [
+        "Honest",
+        "Calm",
+        "Clear"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 60,
+        "C": 55,
+        "E": 45,
+        "A": 65,
+        "N": 15
+      },
+      "keys": [
+        "N",
+        "O"
+      ],
+      "fusion": "Mindfulness and simplicity are your competitive edge: in a noisy market, your calm is the brand.",
+      "off": 4
+    },
+    {
+      "id": "outlaw",
+      "num": 12,
+      "name": "The Outlaw",
+      "essence": "The disruptor: you break the pattern so something better can take its place.",
+      "work": "Coalition-building: even revolutions need allies.",
+      "wellness": "Channeling intensity",
+      "words": [
+        "Fearless",
+        "Principled",
+        "Unfiltered"
+      ],
+      "roles": [
+        "essence",
+        "human",
+        "impact"
+      ],
+      "profile": {
+        "O": 90,
+        "C": 45,
+        "E": 72,
+        "A": 35,
+        "N": 55
+      },
+      "keys": [
+        "O",
+        "E",
+        "A"
+      ],
+      "fusion": "Channel the intensity: an Outlaw’s brand burns bright only when the fire is aimed.",
+      "off": -4
+    }
   ];
 
   var FACTOR_NAMES = { O: "Openness", C: "Conscientiousness", E: "Extraversion", A: "Agreeableness", N: "Emotional intensity" };
@@ -82,9 +444,10 @@
     C: ["Proven", "Precise", "Dependable"],
     E: ["Magnetic", "Alive", "Dynamic"],
     A: ["Trusted", "Warm", "Generous"],
-    N: ["Attuned", "Driven", "Instinctive"]
+    N: ["Attuned", "Driven", "Instinctive"],
+    Nc: ["Steady", "Composed", "Calm"]
   };
-  var GLOBAL_FALLBACK = ["Vivid", "Steady", "Radiant"];
+  var GLOBAL_FALLBACK = ["Vivid", "Radiant", "Distinct"];
   var PHRASES = {
     O: { high: "your wide-open imagination", low: "your practical, grounded taste", mid: "your measured openness to ideas" },
     C: { high: "your dependable follow-through", low: "your flexible, improvisational style", mid: "your balanced approach to structure" },
@@ -98,18 +461,18 @@
 var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "Want to talk through your result?", "p": "Our team can read your archetype and three words with you and say what we would work on first. Your result reaches us only if you choose to send it.", "primary_label": "Send my result to our team", "secondary_label": "Request a private 20-minute call"}, "optin": {"heading": "Want your report by email too?", "intro": "Your report is already yours to keep. If you also want it by email, with a short series for your archetype, you can add your email below. This is optional.", "consent_email": "Email me my report and the short series for my archetype.", "consent_whatsapp": "Message me on WhatsApp about my result.", "consent_share": "Share my archetype, three words and role with the Rise Personal team, so they can prepare if we speak.", "decline_label": "No thanks, keep my report", "privacy_note": "Each box is separate and starts unticked. You can say stop at any time, and we will delete your details if you ask. Our privacy and discretion page explains what we keep."}, "share_text": "I just took the Rise Personal Brand DNA Report. My archetype: {archetype}. My three words: {words}. It is free, takes about four minutes and nothing leaves your browser. {url}"};
   /* ---------- Report content: founder's notes, plays, trait lines ---------- */
   var FOUNDER_NOTES = {
-    sage: "I meet many people who know more than they say. You are one of them. A Sage earns trust by making hard things clear, and your answers show the depth to do it. Your job now is to think out loud in public: one idea a week, finished and shared. Nobody is waiting for perfect. They are waiting for you to say it.",
-    creator: "You make things that did not exist before, and that is rare. A Creator's risk is the drawer full of almost-finished work. I have seen brilliant people stay unknown for years because they kept polishing. Your brand will grow the day you ship, show the process and let people watch you make. Done is the masterpiece your ideas are waiting for.",
-    ruler: "People feel it when you walk into a room. A Ruler carries authority without raising a voice, and your answers say the same about you. The way to make that last is to share the stage. The leaders people remember are the ones who made others look good in public. Let your team and your partners be seen next to you.",
-    hero: "You are built for proof: results, momentum, a record people can point to. That is a strong place to build a brand from. The risk for a Hero is running a sprint every day until the engine burns out. Pick a pace you can keep for years and let the results speak at that rhythm. A long campaign beats a brilliant sprint.",
-    explorer: "You go where others are still reading about it. An Explorer's brand is a journey people want to follow, but a journey needs a home base. Share what you found, not only where you are going next. Bring the story back, in one place, on a schedule. People follow explorers who return with something for them.",
-    magician: "You see around corners and make the impossible feel inevitable. That is a gift, and it is also the trap: ten brilliant ideas and no signature. A Magician's brand gets strong when you pick the one trick and master it in public. Choose your one transformation, name it and repeat it until people say it for you.",
-    lover: "You make people feel valued, and you notice beauty where others miss it. That is a real advantage in building trust. A Lover's brand grows through discernment: say no beautifully, so every yes means more. Protect your standards and your energy. The people who matter will feel the difference, and so will the market.",
-    jester: "You bring light into a room, and people remember how you made them feel. That is hard to teach and easy to underestimate. A Jester's next level is depth next to the humour: let them laugh, then let them think. When people can trust you with the serious thing as well as the funny one, your brand becomes unusual.",
-    everyman: "You are the person people trust because you are real, and real is rare. Everyman brands do not need a costume, they need clarity. Your plain, honest way of saying things is your edge, so own it. Do not copy the polished voice you see everywhere. Say it the way you would say it to a friend and let it travel.",
-    caregiver: "People feel safer with you in their corner, and your answers say you carry a lot for others. A Caregiver's brand is built on trust, but it only lasts if you are visible and have boundaries. You cannot pour from a brand that hides. Let people see what you do, and protect the time that keeps you steady.",
-    innocent: "You bring clarity and honesty to a noisy market, and that calm is your brand. An Innocent often under-uses their voice, because quiet can feel like not enough. It is enough. It just deserves more volume. Say the simple true thing more often and more boldly, and people will lean in.",
-    outlaw: "You break patterns so something better can take their place. People remember Outlaws, which is a great start. The next step is allies. Even revolutions need coalitions, and the Outlaws who last are the ones who found their people early. Aim the fire at one target, name it, and invite others to stand with you."
+    "sage": "A Sage earns trust by making hard things clear. If people already come to you to understand what something means, that is your brand, and it is waiting to be said out loud. Your next move is one idea a week, finished and shared in public. Nobody is waiting for it to be perfect. They are waiting for you to say it.",
+    "creator": "A Creator makes things that did not exist before. The risk is the drawer of almost-finished work, because an audience cannot follow what it cannot see. Your brand grows the day you ship, show the process and let people watch you make. Done is the masterpiece your ideas are waiting for.",
+    "ruler": "A Ruler carries authority without raising a voice. The way to make that last is to share the stage, because the leaders people remember are the ones who made others look good in public. Let your team and your partners be seen next to you.",
+    "hero": "A Hero builds a brand from proof: results, momentum and a record people can point to. The risk is running a sprint every day until the engine burns out. Pick a pace you can keep for years and let the results speak at that rhythm. A long campaign beats a brilliant sprint.",
+    "explorer": "An Explorer's brand is a journey people want to follow, and a journey needs a home base. Share what you found, not only where you are going next. Bring the story back to one place, on a schedule. People follow explorers who return with something for them.",
+    "magician": "A Magician sees around corners and makes the impossible feel inevitable. The trap is ten brilliant ideas and no signature. Choose your one transformation, name it, show it in public and repeat it until people say it for you.",
+    "lover": "A Lover makes people feel valued and notices what others miss. The brand grows through discernment: say no beautifully, so every yes means more. Protect your standards and your energy. The people who matter will feel the difference.",
+    "jester": "A Jester brings light into a room, and people remember how they felt. The next level is depth next to the humour: let them laugh, then let them think. When people can trust you with the serious thing as well as the funny one, your brand becomes unusual.",
+    "everyman": "An Everyman earns trust by being plain and real. You do not need a costume, you need clarity. Say it the way you would say it to a friend, skip the polished voice you see everywhere, and let it travel.",
+    "caregiver": "A Caregiver's brand is built on trust, and it lasts only if you are visible and have boundaries. You cannot pour from a brand that hides. Let people see what you do, and protect the time that keeps you steady.",
+    "innocent": "An Innocent brings clarity and honesty to a noisy market, and that calm is the brand. Quiet can feel like not enough. It is enough, and it deserves more volume. Say the simple true thing more often and more boldly, and people will lean in.",
+    "outlaw": "An Outlaw breaks patterns so something better can take their place. People remember Outlaws, which is a good start. The next step is allies: even revolutions need coalitions. Aim the fire at one target, name it, and invite others to stand with you."
   };
 
   var PLAYS = {
@@ -132,21 +495,21 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
     C: { high: "People can build on your word. You finish what you start.", mid: "You balance structure with room to move.", low: "You move by feel and adapt fast, which is useful in a changing market." },
     E: { high: "You gain energy from people and rooms, and it shows.", mid: "You are at ease on stage and in a quiet one-to-one.", low: "You think before you speak, and people listen when you do." },
     A: { high: "You make people feel safe, and trust follows you.", mid: "You are warm without being easy to push around.", low: "You say what others avoid saying, and that earns respect." },
-    N: { high: "You stay steady when others rush.", mid: "You keep an even keel most of the time.", low: "You feel things deeply, which makes you attuned to people. You need rest to protect it." }
+    N: { high: "You stay steady when others rush.", mid: "You keep an even keel most of the time.", low: "You feel things deeply, which makes you attuned to people. Plan recovery time after big moments so it does not wear you down." }
   };
   var TRAIT_EDGE = {
     O: "Make room for one new idea a week, so your brand keeps growing.",
     C: "Choose one thing to finish and share each week, so people see your follow-through.",
-    E: "Pick one room a month where you speak first, so people hear you early.",
+    E: "Pick one small room a month where you open the conversation, so people hear you early.",
     A: "Start with one generous gesture in public each week, so people feel your warmth before your edge.",
-    N: "Build one small ritual that restores you before big moments, so your calm shows."
+    N: "Choose one small routine before big moments, such as a short walk or a few quiet minutes, so you arrive steady."
   };
   var PAIR_LINES = {
-    "OC": "You imagine well and you deliver, which is the combination investors and clients pay for.",
-    "OE": "You bring big ideas into the room with energy. People remember who said it first.",
+    "OC": "You imagine well and you deliver, which makes your ideas easy to trust.",
+    "OE": "You bring big ideas into the room with energy, and people remember where they heard them.",
     "OA": "You are creative and kind. People trust your ideas because they trust you.",
     "ON": "You imagine freely and you stay steady. That lets you try bold things without losing the room.",
-    "CE": "You are visible and dependable. Few people manage both.",
+    "CE": "You are visible and dependable, and each supports the other.",
     "CA": "You are reliable and warm. People hand you important things and feel good doing it.",
     "CN": "You are organised and calm. You are the person people want next to them when it gets difficult.",
     "EA": "You are lively and generous. People feel welcome around you.",
@@ -322,8 +685,8 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
   }
   function matchArchetypes(sc) {
     var ranked = ARCHETYPES.map(function (a) {
-      var d = 0; ["O", "C", "E", "A", "N"].forEach(function (f) { var w = a.keys.indexOf(f) >= 0 ? 2 : 1; d += w * Math.pow(sc[f] - a.profile[f], 2); });
-      return { a: a, d: Math.sqrt(d) };
+      var d = 0; ["O", "C", "E", "A", "N"].forEach(function (f) { var w = a.keys.indexOf(f) >= 0 ? 2 : 1, s = Math.max(0, Math.min(100, 50 + 1.6 * (sc[f] - 50))); d += w * Math.pow(s - a.profile[f], 2); });
+      return { a: a, d: Math.sqrt(d) + (a.off || 0) };
     });
     ranked.sort(function (x, y) { return x.d - y.d || x.a.num - y.a.num; });
     return { primary: ranked[0].a, secondary: ranked[1].a };
@@ -339,14 +702,15 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
     var feel = PICKS[0].opts.find(function (o) { return o.k === state.picks.feel; }) || PICKS[0].opts[0];
     var rem = PICKS[1].opts.find(function (o) { return o.k === state.picks.remember; }) || PICKS[1].opts[0];
     var w1 = prim.words[prim.roles.indexOf(feel.role)], w2 = sec.words[sec.roles.indexOf(rem.role)];
-    var topF = ["O", "C", "E", "A", "N"].slice().sort(function (x, y) { return sc[y] - sc[x]; })[0];
+    var vv = { O: sc.O, C: sc.C, E: sc.E, A: sc.A, N: 100 - sc.N }, srt = ["O", "C", "E", "A", "N"].slice().sort(function (x, y) { return vv[y] - vv[x]; });
+    var standout = vv[srt[0]] - vv[srt[1]] >= 8, topF = srt[0] === "N" ? "Nc" : srt[0];
     var used = [w1.toLowerCase(), w2.toLowerCase()];
     function pickFrom(pool) { for (var i = 0; i < pool.length; i++) if (used.indexOf(pool[i].toLowerCase()) < 0) return pool[i]; return null; }
-    var w3 = pickFrom(DRIVE_POOL[topF]) || pickFrom(GLOBAL_FALLBACK) || "Vivid";
+    var w3 = (standout ? pickFrom(DRIVE_POOL[topF]) : null) || pickFrom(GLOBAL_FALLBACK) || "Vivid";
     return [
       { w: w1, why: "From your primary current, " + prim.name + ". You want people to feel “" + feel.label.toLowerCase() + "”, and “" + w1 + "” carries exactly that." },
       { w: w2, why: "Your secondary current, " + sec.name + ". You want to be remembered as “" + rem.label.toLowerCase() + "”, and “" + w2 + "” is that note in you." },
-      { w: w3, why: "Your strongest trait: " + FACTOR_NAMES[topF] + " at " + sc[topF] + "/100. “" + w3 + "” is its word." }
+      { w: w3, why: standout ? "Your strongest signal is " + (topF === "Nc" ? "composure" : FACTOR_NAMES[topF].toLowerCase()) + ". “" + w3 + "” is its word." : "No single trait stands out in your answers, so “" + w3 + "” keeps your options open." }
     ];
   }
   function pad(n) { return n < 10 ? "0" + n : String(n); }
@@ -372,9 +736,9 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
       greet: state.name ? "Dear " + state.name + "," : "Dear friend,",
       paras: [
         FOUNDER_NOTES[p.id],
-        "Your answers told me something specific too. " + a.strong + " " + TRAIT_NAMES[a.top] + " is your strongest signal, at " + a.v[a.top] + " out of 100. " + a.pairLine,
-        "You told me you want people to feel " + feel.label.toLowerCase() + " and to remember you as " + rem.label.toLowerCase() + ". Your three words are " + w[0] + ", " + w[1] + " and " + w[2] + ". The first carries what you want people to feel, the second what you want them to remember, and the third is the word your answers earned on their own, the one that makes you hard to copy.",
-        "One thing to watch: your lowest signal is " + TRAIT_NAMES[a.low].toLowerCase() + ". " + a.edge,
+        (a.v[a.top] - a.v[a.second] >= 8 ? "Your answers showed something specific. " + a.strong + " " + TRAIT_NAMES[a.top] + " is your strongest signal. " + a.pairLine : "No single trait stands out in your answers. That is useful: you can be introduced in more than one way, and you get to choose which one leads.") + " These come from twenty short statements, so read them as a direction, not a measurement.",
+        "You told us you want people to feel " + feel.label.toLowerCase() + " and to remember you as " + rem.label.toLowerCase() + ". Your three words are " + w[0] + ", " + w[1] + " and " + w[2] + ". " + w[0] + " is for how you want people to feel and " + w[1] + " for what you want them to remember. " + w[2] + " comes from your own pattern, not from what you picked.",
+        "One thing to watch, and it is a small one: the signal with most room to grow is " + TRAIT_NAMES[a.low].toLowerCase() + ". " + a.edge,
         "I built Rise Personal for this exact moment, when you stop guessing about your brand and start choosing it. If you want to talk it through, send us your results and tell us the one room you want to be known in. We will start there."
       ],
       sign: "Mohamed El Sawaf", role: "Founder, Rise Personal"
@@ -446,7 +810,9 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
 
   function shareArch(p) {
     var u = new URL("archetype-" + p.id + ".html", location.href); u.search = "ref=share";
-    var data = { title: "I am " + p.name + " | Rise Personal", text: cpy("share_text", "I just got my Brand DNA Report. My brand archetype is " + p.name + ". Find yours in four minutes:"), url: u.href };
+    var ws = (CUR && CUR.words ? CUR.words : []).map(function (x) { return x.w; }).join(", ");
+    var txt = cpy("share_text", "I just got my Brand DNA Report. My brand archetype is {archetype}. Find yours in four minutes: {url}").replace("{archetype}", p.name).replace("{words}", ws).replace("{url}", u.href);
+    var data = { title: "I am " + p.name + " | Rise Personal", text: txt.replace(u.href, "").trim(), url: u.href };
     if (navigator.share) { navigator.share(data).catch(function () {}); return; }
     var st = $("#dl-st"); var done = function () { if (st) st.textContent = "Link copied. Paste it anywhere to share."; };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(data.text + " " + data.url).then(done, function () { if (st) st.textContent = data.url; });
