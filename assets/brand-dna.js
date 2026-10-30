@@ -301,7 +301,7 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
 
   function finish() {
     var out = $("#res-body");
-    var steps = ["Reading your 20 answers", "Matching you against the 12 archetypes", "Choosing your three words", "Writing your note from Sawaf"];
+    var steps = ["Reading your 20 answers", "Matching you against the 12 archetypes", "Choosing your three words", "Writing your note from our founder"];
     if (reduced) { renderResults(); show("res"); return; }
     out.innerHTML = '<div class="reveal-load"><p class="eyebrow">One moment' + (state.name ? ", " + state.name : "") + '</p><h2>Building your Brand DNA Report</h2><ul class="rl-steps">' + steps.map(function (t, i) { return '<li style="--i:' + i + '"><i></i>' + t + "</li>"; }).join("") + '</ul><div class="rl-bar"><i></i></div></div>';
     show("res");
@@ -377,7 +377,7 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
         "One thing to watch: your lowest signal is " + TRAIT_NAMES[a.low].toLowerCase() + ". " + a.edge,
         "I built Rise Personal for this exact moment, when you stop guessing about your brand and start choosing it. If you want to talk it through, send us your results and tell us the one room you want to be known in. We will start there."
       ],
-      sign: "Sawaf", role: "Founder, Rise Personal"
+      sign: "Mohamed El Sawaf", role: "Founder, Rise Personal"
     };
   }
 
@@ -409,7 +409,7 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
     var out = $("#res-body");
     out.innerHTML =
       '<div class="res-top rv-step" style="--s:0"><span class="badge">Archetype unlocked</span><p class="eyebrow">Your Brand DNA Report is ready' + (state.name ? ", " + state.name : "") + "</p></div>" +
-      '<div class="dl-card rv-step" style="--s:1"><div><h3>Your report, to keep</h3><p>Six branded pages: your archetype, five currents, three words, a note from Sawaf and a 7-day plan.</p></div><div class="dl-act"><button class="btn btn-ink btn-lg" id="btn-pdf" type="button">Download your report (PDF)</button><button class="btn btn-ghost" id="btn-share" type="button">Share this archetype</button><button class="btn btn-ghost" id="btn-png" type="button">Download share card</button></div><p class="dl-st" id="dl-st" aria-live="polite"></p></div>' +
+      '<div class="dl-card rv-step" style="--s:1"><div><h3>Your report, to keep</h3><p>Six branded pages: your archetype, five currents, three words, a note from our founder and a 7-day plan.</p></div><div class="dl-act"><button class="btn btn-ink btn-lg" id="btn-pdf" type="button">Download your report (PDF)</button><button class="btn btn-ghost" id="btn-share" type="button">Share this archetype</button><button class="btn btn-ghost" id="btn-png" type="button">Download share card</button></div><p class="dl-st" id="dl-st" aria-live="polite"></p></div>' +
       '<div class="arch-card rv-step" style="--s:2"><span class="arch-num">Archetype ' + pad(p.num) + ' of 12</span>' +
       '<h2 class="arch-name">' + p.name + '</h2><p class="arch-essence">' + p.essence + "</p>" +
       '<p class="words-head">Your 3 words</p><p class="threewords"><em>' + w3[0] + "</em> · <em>" + w3[1] + "</em> · <em>" + w3[2] + "</em></p>" +
@@ -634,7 +634,7 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
     var cx = 90, cy = 120;
     if (imgs.sawaf) { x.save(); x.beginPath(); x.arc(cx + 80, cy + 80, 80, 0, Math.PI * 2); x.clip(); x.drawImage(imgs.sawaf, cx, cy - 10, 160, 200); x.restore(); x.strokeStyle = BLL; x.lineWidth = 3; x.beginPath(); x.arc(cx + 80, cy + 80, 82, 0, Math.PI * 2); x.stroke(); }
     x.textAlign = "left"; x.font = "700 22px 'Source Sans 3', Arial, sans-serif"; x.fillStyle = BLL; x.fillText("A  N O T E  F R O M  T H E  F O U N D E R", 290, 150);
-    x.font = "800 80px 'Alumni Sans', Arial, sans-serif"; x.fillStyle = "#fff"; x.fillText("Written for you", 290, 235);
+    x.font = "800 80px 'Alumni Sans', Arial, sans-serif"; x.fillStyle = "#fff"; x.fillText(NOTE_LABEL.length > 24 ? "A note for you" : NOTE_LABEL, 290, 235);
     var fs = 31, lh = 45, avail = PH - 420 - 200, total;
     do {
       x.font = "400 " + fs + "px 'Source Sans 3', Arial, sans-serif"; total = lines(x, R.note.greet, 1000).length * lh + 20;
