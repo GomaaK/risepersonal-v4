@@ -760,6 +760,22 @@ Yes, when we add anything new. We will update it before the change goes live.
 
 ---
 
+# Our ecosystem
+Source: https://www.risepersonal.com/#ecosystem
+
+Rise Personal sits inside an ecosystem of sister companies that share owners and work together. They are separate businesses.
+
+- DRP9 Tech (https://drp9-tech.com): apps, platforms and AI agents for founders and large organisations
+- La7ma (https://la7ma.com): online fresh-meat store in Egypt
+- WAI-S (https://wai-s.com): strategic partner for business and individual growth
+- DRP9 (https://drp9.com): creator marketplace for fashion and prints
+- Bnsights (https://bnsights.com): innovation, foresight and government excellence consulting
+- Imolty.ai (https://imolty.ai): AI concierge for rental properties in Spain and Portugal
+- Uniek AI (https://uniek.ai): AI product engine for startups
+- Wijhat Travel (https://www.wijhattravel.com): Saudi Arabia tourism and travel
+
+---
+
 # Personal branding explained, without the jargon.
 Source: https://www.risepersonal.com/journal-personal-branding-explained.html
 Last reviewed: 2026-10-30
