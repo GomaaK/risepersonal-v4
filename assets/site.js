@@ -26,7 +26,52 @@
     var a = e.target.closest && e.target.closest("[data-track]"); if (!a) return;
     track(a.dataset.track, { where: a.dataset.where || location.pathname.replace(/^\//, "") || "home" });
   });
-  window.RP = { WA: WA, reduced: reduced, $: $, $$: $$, waUrl: waUrl, setWa: setWa, DEFAULT_MSG: DEFAULT_MSG, track: track, CFG: CFG };
+
+  /* ---------- lead gate: name + (email or WhatsApp) before a result. Active only when an endpoint is configured. ---------- */
+  var LEADKEY = "rp_lead";
+  function getLead() { try { return JSON.parse(localStorage.getItem(LEADKEY) || "null"); } catch (e) { return null; } }
+  function gateEnabled() { return !!(CFG.captureUrl || CFG.captureForm); }
+  function esc2(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sendLead(p) {
+    if (CFG.captureForm && CFG.captureForm.action) {
+      var m = CFG.captureForm.fields || {}, body = new URLSearchParams();
+      Object.keys(m).forEach(function (k) { if (p[k] !== undefined) body.append(m[k], typeof p[k] === "object" ? JSON.stringify(p[k]) : String(p[k])); });
+      return fetch(CFG.captureForm.action, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body });
+    }
+    return fetch(CFG.captureUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(p), mode: "cors" }).then(function (r) { if (!r.ok) throw new Error("bad"); });
+  }
+  function gate(o) {
+    var lead = getLead();
+    if (!gateEnabled() || lead) { o.onPass(lead); return; }
+    var host = o.container, prev = host.innerHTML;
+    host.innerHTML = '<form class="gate" novalidate aria-labelledby="gate-h"><span class="badge">Almost there</span><h2 id="gate-h">Where should we send your report?</h2>' +
+      '<p class="gate-lede">Add your name and an email or WhatsApp number to see your result. We use them to send your report link and so our team can follow up on your result.</p>' +
+      '<div class="gate-grid"><label>First name<input name="name" type="text" maxlength="60" autocomplete="given-name" required></label>' +
+      '<label>Email<input name="email" type="email" maxlength="120" autocomplete="email" inputmode="email"></label>' +
+      '<label>WhatsApp number<input name="wa" type="tel" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="+971 50 000 0000"></label></div>' +
+      '<p class="gate-note">Name, and at least one of email or WhatsApp. We will see your name, your contact details, which test you took and your result. We do not sell or share them. <a href="privacy-and-discretion.html">Privacy and discretion</a></p>' +
+      '<label class="ck"><input type="checkbox" name="mk"> <span>Also send me occasional notes from the Rise Personal team. I can stop them at any time.</span></label>' +
+      '<div class="res-actions"><button class="btn btn-ink btn-lg" type="submit">Show my result</button></div><p class="dl-st" aria-live="polite"></p></form>';
+    var f = $(".gate", host), st = $(".dl-st", host), busy = false;
+    var first = f.elements.name; try { first.focus({ preventScroll: true }); } catch (e) {}
+    f.addEventListener("submit", function (e) {
+      e.preventDefault(); if (busy) return;
+      var name = f.elements.name.value.trim(), email = f.elements.email.value.trim(), wa = f.elements.wa.value.trim();
+      if (name.length < 2) { st.textContent = "Please add your first name."; f.elements.name.focus(); return; }
+      var okE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email), okW = wa.replace(/\D/g, "").length >= 8;
+      if (!okE && !okW) { st.textContent = "Please add a valid email or a WhatsApp number with the country code."; (email ? f.elements.email : f.elements.wa).focus(); return; }
+      if (email && !okE) { st.textContent = "That email does not look right. Please check it."; f.elements.email.focus(); return; }
+      if (wa && !okW) { st.textContent = "That number does not look right. Please add the country code."; f.elements.wa.focus(); return; }
+      var ctx = o.context ? o.context() : {};
+      var payload = { source: "risepersonal.com", test: o.test, submitted: new Date().toISOString(), name: name, email: okE ? email : "", whatsapp: okW ? wa : "", marketing_opt_in: !!f.elements.mk.checked, result: ctx.result || "", ref: (new URLSearchParams(location.search)).get("ref") || "" };
+      busy = true; st.textContent = "One moment…";
+      sendLead(payload).then(function () {
+        var l = { name: name, email: payload.email, whatsapp: payload.whatsapp }; try { localStorage.setItem(LEADKEY, JSON.stringify(l)); } catch (e2) {}
+        track("lead_captured", { test: o.test }); o.onPass(l);
+      }).catch(function () { st.textContent = "That did not go through. Please try again, or message us on WhatsApp."; busy = false; });
+    });
+  }
+  window.RP = { gate: gate, gateEnabled: gateEnabled, getLead: getLead, WA: WA, reduced: reduced, $: $, $$: $$, waUrl: waUrl, setWa: setWa, DEFAULT_MSG: DEFAULT_MSG, track: track, CFG: CFG };
   if (CFG.plausibleDomain) { loadAnalytics(); track("pageview_ready", {}); }
   document.documentElement.classList.remove("no-js");
   setWa(DEFAULT_MSG);
@@ -55,7 +100,7 @@
   /* clear this device's stored answers */
   $$("[data-clear]").forEach(function (b) {
     b.addEventListener("click", function () {
-      try { Object.keys(localStorage).forEach(function (k) { if (k.indexOf("rp3_") === 0 || k.indexOf("rp-") === 0) localStorage.removeItem(k); }); sessionStorage.clear(); } catch (e) {}
+      try { Object.keys(localStorage).forEach(function (k) { if (k.indexOf("rp3_") === 0 || k.indexOf("rp-") === 0 || k.indexOf("rp_") === 0) localStorage.removeItem(k); }); sessionStorage.clear(); } catch (e) {}
       var st = b.parentNode.querySelector(".clear-st"); if (st) { st.textContent = "Cleared."; setTimeout(function () { st.textContent = ""; }, 3000); }
     });
   });
