@@ -3,6 +3,7 @@
   "use strict";
   var RP = window.RP || {}, $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var D = JSON.parse($("#test-data").textContent), root = $("#test-root"), reduced = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var SLUG = (RP.slugNow ? RP.slugNow() : D.slug), MINS = D.kind === "builder" ? "3 minutes" : (D.id === "big-five-aspects" ? "15 minutes" : "4 minutes");
   var KEY = "rp_test_" + D.id, st = { a: [], i: 0 };
   try { var sv = JSON.parse(localStorage.getItem(KEY) || "null"); if (sv && sv.a) st = sv; } catch (e) {}
   function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
@@ -20,12 +21,19 @@
     return '<div class="next-card rv-step"><div><h3>' + esc(c.heading || "Want to talk it through?") + '</h3><p>' + esc(c.text || c.body || "") + '</p></div><div class="res-actions"><a class="btn btn-wa" data-track="test_wa_click" data-where="' + esc(D.slug) + '" rel="noopener" href="' + waLink(msg) + '">' + esc(c.button || "Send my result to our team") + '</a>' +
       (c.secondary && c.secondary_href ? '<a class="btn btn-ghost" href="' + esc(c.secondary_href) + '">' + esc(c.secondary) + "</a>" : '<a class="btn btn-ghost" href="tests.html">More free tests</a>') + '</div></div>';
   }
+  function againBtn() {
+    if (D.kind === "builder") return '<button class="btn btn-ghost" id="t-again" type="button">Start again</button>';
+    var r = RP.retakeOn ? RP.retakeOn(SLUG) : null;
+    return r ? '<span class="retake-note">You can take this again from ' + RP.fmtDate(r) + '.</span>' : '<button class="btn btn-ghost" id="t-again" type="button">Take it again</button>';
+  }
+  function after() { return (RP.nextHTML ? RP.nextHTML(SLUG) : "") + (RP.inviteHTML ? RP.inviteHTML(D.h1) : ""); }
   function actions() {
-    return '<div class="res-actions rv-step res-tools"><button class="btn btn-ghost" id="t-print" type="button">Save as PDF</button><button class="btn btn-ghost" id="t-again" type="button">Start again</button><a class="btn btn-ghost" href="tests.html">More free tests</a></div><p class="res-foot dark-on-light">Your answers stay on this device. <button class="btn-link" id="t-clear" type="button">Clear my data</button></p>';
+    return after() + '<div class="res-actions rv-step res-tools"><button class="btn btn-ghost" id="t-print" type="button">Save as PDF</button>' + againBtn() + '<a class="btn btn-ghost" href="tests.html">All free tests</a></div><p class="res-foot dark-on-light">Your answers stay on this device. <button class="btn-link" id="t-clear" type="button">Clear my data</button></p>';
   }
   function wireCommon() {
     var p = $("#t-print"); if (p) p.addEventListener("click", function () { T("test_print", { test: D.id }); window.print(); });
-    var a = $("#t-again"); if (a) a.addEventListener("click", function () { st = { a: [], i: 0 }; save(); start(); });
+    var a = $("#t-again"); if (a && D.kind !== "builder") a.addEventListener("click", function () { st = { a: [], i: 0 }; save(); try { localStorage.removeItem("rp_done_" + SLUG); } catch (e) {} start(); focusTop(); });
+    if (RP.wireInvite) RP.wireInvite(D.h1, MINS);
     var c = $("#t-clear"); if (c) c.addEventListener("click", function () { try { Object.keys(localStorage).forEach(function (k) { if (k.indexOf("rp_") === 0 || k.indexOf("rp3_") === 0) localStorage.removeItem(k); }); } catch (e) {} location.reload(); });
   }
   function head() { return '<div class="print-head"><b>Rise Personal</b> · ' + esc(D.h1) + ' · risepersonal.com</div>'; }
@@ -35,7 +43,11 @@
   function start() {
     var n = D.kind === "builder" ? 0 : (D.items ? D.items.length : D.questions.length);
     if (D.kind === "builder") { renderBuilder(); return; }
-    var has = st.i > 0 && st.i < n;
+    var has = st.i > 0 && st.i < n, tk = RP.retakeOn ? RP.retakeOn(SLUG) : null;
+    if (tk && st.a.length >= n) {
+      root.innerHTML = '<div class="test-intro"><p class="lede">You have already taken this one. We keep one result per person so the answer stays honest. Here it is again.</p><div class="intro-cta"><button class="btn btn-ink btn-lg" id="t-see" type="button">See my result</button><p>You can take it again from ' + RP.fmtDate(tk) + '.</p></div></div>';
+      $("#t-see").addEventListener("click", function () { result(); }); return;
+    }
     root.innerHTML = '<div class="test-intro"><p class="lede">' + esc(D.lede) + '</p><p class="tnote">' + esc(D.time_note || "") + '</p>' + (D.audience_note ? '<p class="aud">' + esc(D.audience_note) + '</p>' : "") + honesty() +
       '<div class="intro-cta"><button class="btn btn-ink btn-lg" id="t-begin" type="button">' + (D.begin_label || "Begin") + '</button>' + (has ? '<p>You have one in progress. <button class="btn-link" id="t-resume" type="button">Pick up where you left off</button></p>' : "") + '</div></div>';
     $("#t-begin").addEventListener("click", function () { st = { a: [], i: 0 }; save(); T("test_start", { test: D.id }); renderQ(0); });
@@ -82,7 +94,7 @@
 
   /* ---------- result renderers ---------- */
   function result() {
-    T("test_complete", { test: D.id });
+    T("test_complete", { test: D.id }); if (RP.markDone) RP.markDone(SLUG);
     var html = "";
     if (D.kind === "top") html = resTop(); else if (D.kind === "aspects") html = resAspects(); else if (D.kind === "sumbands") html = resSum(); else html = "";
     root.innerHTML = '<div id="test-result">' + head() + html + "</div>"; wireCommon(); focusTop();
@@ -164,7 +176,7 @@
       var m = { be: be, Be: Be, for: clean(v.for, true), who: clean(v.who, true), we_are: clean(v.we_are, true), that: clean(v.that, true), unlike: clean(v.unlike, true), because: clean(v.because, true) };
       D.output_templates.forEach(function (t) { var tx = fill(t.template, m); tx = tx.charAt(0).toUpperCase() + tx.slice(1); lines.push({ n: t.name, u: t.notes || "", t: tx }); });
     }
-    var sel = lines[0].t;
+    var sel = lines[0].t; if (RP.markDone) RP.markDone(SLUG);
     out.innerHTML = '<div id="test-result">' + head() + '<h2 class="rv-step">' + esc(RS.heading || "Your lines") + '</h2>' + lines.map(function (l, i) { return '<div class="rbox rv-step"><h3>' + esc(l.n) + '</h3>' + (l.u ? '<p class="bf-h">' + esc(l.u) + '</p>' : "") + '<p class="line">' + esc(l.t) + '</p><button class="btn btn-ghost" type="button" data-copy="' + esc(l.t) + '">' + esc(((RS.buttons || {}).copy) || "Copy") + '</button></div>'; }).join("") +
       (RS.check_questions ? '<div class="rbox rv-step"><h3>Check it</h3>' + list(RS.check_questions) + '</div>' : "") + (RS.after_text ? '<p class="res-foot dark-on-light rv-step">' + esc(RS.after_text) + '</p>' : "") +
       ctaBlock(fill(D.whatsapp_message || "Hello Rise Personal team, I used your tool and would like a second opinion.", { selected_line: sel })) + actions() + "</div>";
