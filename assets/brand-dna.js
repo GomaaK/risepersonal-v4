@@ -13,7 +13,7 @@
     { f: "O", r: 1, t: "I am drawn to unusual ideas, art, and perspectives others find strange." },
     { f: "C", r: 0, t: "I often leave important things until the last minute." },
     { f: "E", r: 0, t: "Long stretches around many people leave me drained." },
-    { f: "A", r: 1, t: "I give people the benefit of the doubt." },
+    { f: "A", r: 0, t: "I will say a hard thing plainly, even if it costs me some goodwill." },
     { f: "N", r: 1, t: "I replay worries in my mind long after the moment has passed." },
     { f: "O", r: 0, t: "I prefer familiar routines over experimenting with new approaches." },
     { f: "C", r: 1, t: "People can rely on me to deliver what I promised, on time." },
@@ -84,7 +84,7 @@
         "C"
       ],
       "fusion": "Deep work and meditation keep your clarity sharp: a Sage’s brand only holds when the mind behind it is rested.",
-      "off": 2
+      "off": 0
     },
     {
       "id": "creator",
@@ -171,11 +171,12 @@
         "C": 85,
         "E": 78,
         "A": 50,
-        "N": 50
+        "N": 75
       },
       "keys": [
         "C",
-        "E"
+        "E",
+        "N"
       ],
       "fusion": "Discipline and fitness keep the engine honest: your brand promises proof, so train like it.",
       "off": 0
@@ -201,7 +202,7 @@
         "O": 85,
         "C": 45,
         "E": 55,
-        "A": 40,
+        "A": 25,
         "N": 50
       },
       "keys": [
@@ -209,7 +210,7 @@
         "A"
       ],
       "fusion": "Nature and movement reset your compass: the Explorer’s brand stays true only at full breath.",
-      "off": 3
+      "off": 0
     },
     {
       "id": "magician",
@@ -240,7 +241,7 @@
         "E"
       ],
       "fusion": "Creation rituals turn sparks into fire: ritual, not mood, feeds the Magician’s brand.",
-      "off": -3
+      "off": 0
     },
     {
       "id": "lover",
@@ -272,7 +273,7 @@
         "A"
       ],
       "fusion": "Self-care is your strategy, not your indulgence: the Lover’s brand glows from the inside out.",
-      "off": -3
+      "off": 0
     },
     {
       "id": "jester",
@@ -357,7 +358,7 @@
         "C": 60,
         "E": 50,
         "A": 92,
-        "N": 55
+        "N": 70
       },
       "keys": [
         "A",
@@ -417,8 +418,8 @@
       "profile": {
         "O": 90,
         "C": 45,
-        "E": 72,
-        "A": 35,
+        "E": 80,
+        "A": 20,
         "N": 55
       },
       "keys": [
@@ -427,7 +428,7 @@
         "A"
       ],
       "fusion": "Channel the intensity: an Outlaw’s brand burns bright only when the fire is aimed.",
-      "off": -4
+      "off": 0
     }
   ];
 
@@ -458,7 +459,7 @@
 
 
 
-var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "Want to talk through your result?", "p": "Our team can read your archetype and three words with you and say what we would work on first. Your result reaches us only if you choose to send it.", "primary_label": "Send my result to our team", "secondary_label": "Request a private 20-minute call"}, "optin": {"heading": "Want your report by email too?", "intro": "Your report is already yours to keep. If you also want it by email, with a short series for your archetype, you can add your email below. This is optional.", "consent_email": "Email me my report and the short series for my archetype.", "consent_whatsapp": "Message me on WhatsApp about my result.", "consent_share": "Share my archetype, three words and role with the Rise Personal team, so they can prepare if we speak.", "decline_label": "No thanks, keep my report", "privacy_note": "Each box is separate and starts unticked. You can say stop at any time, and we will delete your details if you ask. Our privacy and discretion page explains what we keep."}, "share_text": "I just took the Rise Personal Brand DNA Report. My archetype: {archetype}. My three words: {words}. It is free, takes about four minutes and nothing leaves your browser. {url}"};
+var COPY = {"note_label": "A note for you", "result_next_card": {"h3": "Want to talk through your result?", "p": "Our team can read your archetype and three words with you and say what we would work on first. Your result reaches us only if you choose to send it.", "primary_label": "Send my result to our team", "secondary_label": "Request a private 20-minute call"}, "optin": {"heading": "Want your report by email too?", "intro": "Your report is already yours to keep. If you also want it by email, with a short series for your archetype, you can add your email below. This is optional.", "consent_email": "Email me my report and the short series for my archetype.", "consent_whatsapp": "Message me on WhatsApp about my result.", "consent_share": "Share my archetype, three words and role with the Rise Personal team, so they can prepare if we speak.", "decline_label": "No thanks, keep my report", "privacy_note": "Each box is separate and starts unticked. You can say stop at any time, and we will delete your details if you ask. Our privacy and discretion page explains what we keep."}, "share_text": "I just took the Rise Personal Brand DNA Report. My archetype: {archetype}. My three words: {words}. It is free, takes about four minutes and nothing leaves your browser. {url}"};
   /* ---------- Report content: founder's notes, plays, trait lines ---------- */
   var FOUNDER_NOTES = {
     "sage": "A Sage earns trust by making hard things clear. If people already come to you to understand what something means, that is your brand, and it is waiting to be said out loud. Your next move is one idea a week, finished and shared in public. Nobody is waiting for it to be perfect. They are waiting for you to say it.",
@@ -632,9 +633,9 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
       qcard.style.blockSize = h0 + "px"; void qcard.offsetHeight; qcard.style.blockSize = h1 + "px";
       requestAnimationFrame(function () { requestAnimationFrame(function () { inner.classList.remove("pre"); inner.classList.add("in"); }); });
       note(i, dir);
-      setTimeout(function () { lock = false; }, 300);
-      setTimeout(function () { qcard.style.blockSize = ""; var qt = $(".q-q", qcard); if (qt) { qt.setAttribute("tabindex", "-1"); try { qt.focus({ preventScroll: true }); } catch (e) {} } }, 440);
-    }, 210);
+      setTimeout(function () { lock = false; }, 140);
+      setTimeout(function () { qcard.style.blockSize = ""; var qt = $(".q-q", qcard); if (qt) { qt.setAttribute("tabindex", "-1"); try { qt.focus({ preventScroll: true }); } catch (e) {} } }, 300);
+    }, 100);
   }
 
   qcard.addEventListener("click", function (ev) {
@@ -644,13 +645,13 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
       var i = parseInt(t.dataset.i, 10);
       state.answers[i] = parseInt(t.dataset.v, 10); state.step = Math.max(state.step, i + 1); save();
       $$(".q-opt", qcard).forEach(function (b) { b.classList.toggle("sel", b === t); });
-      lock = true; setTimeout(function () { lock = false; goTo(i + 1, 1); }, reduced ? 120 : 340);
+      lock = true; setTimeout(function () { lock = false; goTo(i + 1, 1); }, reduced ? 80 : 140);
     } else if (t.dataset.pick) {
       var id = t.dataset.pick; state.picks[id] = t.dataset.k;
       var idx = QUESTIONS.length + PICKS.findIndex(function (p) { return p.id === id; });
       state.step = Math.max(state.step, idx + 1); save();
       $$(".q-opt", qcard).forEach(function (b) { b.classList.toggle("sel", b === t); });
-      lock = true; setTimeout(function () { lock = false; goTo(idx + 1, 1); }, reduced ? 120 : 380);
+      lock = true; setTimeout(function () { lock = false; goTo(idx + 1, 1); }, reduced ? 80 : 160);
     }
   });
   document.addEventListener("keydown", function (ev) {
@@ -661,6 +662,12 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
   });
 
   function finish() {
+    if (window.RP && RP.gate && RP.gateEnabled && RP.gateEnabled() && !RP.getLead()) {
+      show("res");
+      RP.gate({ test: "brand-dna-report", container: $("#res-body"), context: function () { var sc = scores(), m = matchArchetypes(sc), w = threeWords(m.primary, m.secondary, sc).map(function (x) { return x.w; }); return { result: m.primary.name + " (secondary " + m.secondary.name + "); " + w.join(", ") }; }, onPass: finishInner });
+    } else finishInner();
+  }
+  function finishInner() {
     var out = $("#res-body");
     var steps = ["Reading your 20 answers", "Matching you against the 12 archetypes", "Choosing your three words", "Writing your note from our founder"];
     if (reduced) { renderResults(); show("res"); return; }
@@ -669,9 +676,9 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
     var lis = $$(".rl-steps li", out), k = 0;
     (function next() {
       if (k > 0) lis[k - 1].classList.add("done");
-      if (k >= lis.length) { setTimeout(function () { renderResults(true); }, 450); return; }
+      if (k >= lis.length) { setTimeout(function () { renderResults(true); }, 300); return; }
       lis[k].classList.add("on"); $(".rl-bar i", out).style.inlineSize = ((k + 1) / lis.length * 100) + "%"; k++;
-      setTimeout(next, 800);
+      setTimeout(next, 450);
     })();
   }
 
@@ -766,33 +773,38 @@ var COPY = {"note_label": "Based on your answers", "result_next_card": {"h3": "W
     var days = CUR.days.map(function (d) { return "<li><b>" + d[0] + "</b><span>" + d[1] + "</span></li>"; }).join("");
     var msg = "Hello Rise Personal team, I got my Brand DNA Report" + (state.name ? " (" + state.name + ")" : "") + ". My archetype is " + p.name + " (secondary: " + s.name + "). My three words: " + w3.join(", ") + ". The one room I want to be known in is: ";
     var dmsg = "Hello Rise Personal team, I would like to book a 20-minute debrief of my Brand DNA Report. My archetype is " + p.name + " and my three words are " + w3.join(", ") + ". My best times and my time zone are: ";
-    var capture = !!CFG.captureUrl;
+    var capture = false;
     var paras = note.paras.map(function (t) { return "<p>" + t + "</p>"; }).join("");
     var out = $("#res-body");
+    var firstTwo = (FOUNDER_NOTES[p.id].match(/[^.]+\.[^.]*\./) || [FOUNDER_NOTES[p.id]])[0].trim();
+    var standout = a.v[a.top] - a.v[a.second] >= 8;
+    var signalLine = standout ? "Strongest signal: <b>" + TRAIT_NAMES[a.top].toLowerCase() + "</b>. Secondary current: <b>" + s.name + "</b>." : "No single trait stands out, which means you can be introduced in more than one way. Secondary current: <b>" + s.name + "</b>.";
+    var inside = [
+      ["Your five currents", "with a plain reading of each"],
+      ["Why each of your three words fits", "and how to use it"],
+      ["Sound like, show up here, prove it with", ""],
+      ["Your 20-second introduction", "and three LinkedIn headline patterns"],
+      ["Rooms, one conversation, one thing to stop", "and a pace practice for the week"],
+      ["A note from our founder", "written from your answers"],
+      ["Your first 7 days and your next 90", "with dated checkpoints"]
+    ].map(function (r) { return "<li><b>" + r[0] + "</b>" + (r[1] ? "<span>" + r[1] + "</span>" : "") + "</li>"; }).join("");
     out.innerHTML =
       '<div class="res-top rv-step" style="--s:0"><span class="badge">Archetype unlocked</span><p class="eyebrow">Your Brand DNA Report is ready' + (state.name ? ", " + state.name : "") + "</p></div>" +
-      '<div class="dl-card rv-step" style="--s:1"><div><h3>Your report, to keep</h3><p>Ten branded pages: your archetype, five currents, three words, a note from our founder and a 7-day plan.</p></div><div class="dl-act"><button class="btn btn-ink btn-lg" id="btn-pdf" type="button">Download your report (PDF)</button><button class="btn btn-ghost" id="btn-share" type="button">Share this archetype</button><button class="btn btn-ghost" id="btn-png" type="button">Download share card</button></div><p class="dl-st" id="dl-st" aria-live="polite"></p></div>' +
-      '<div class="arch-card rv-step" style="--s:2"><span class="arch-num">Archetype ' + pad(p.num) + ' of 12</span>' +
+      '<div class="arch-card rv-step" style="--s:1"><span class="arch-num">Archetype ' + pad(p.num) + ' of 12</span>' +
       '<h2 class="arch-name">' + p.name + '</h2><p class="arch-essence">' + p.essence + "</p>" +
       '<p class="words-head">Your 3 words</p><p class="threewords"><em>' + w3[0] + "</em> · <em>" + w3[1] + "</em> · <em>" + w3[2] + "</em></p>" +
-      '<ul class="word-why">' + why + "</ul>" +
+      '<p class="brief-line">' + firstTwo + '</p><p class="brief-signal">' + signalLine + "</p>" +
       '<div class="arch-split"><div class="arch-box"><h4>What to work on</h4><p>' + p.work + '</p></div><div class="arch-box"><h4>Wellness pairing</h4><p>' + p.wellness + "</p></div></div>" +
-      '<div class="fusion"><div class="fx">Wellness × Brand</div><p>' + p.fusion + "</p></div>" +
-      '<p class="match-note">' + nt + "</p></div>" +
-      '<div class="next-card rv-step" style="--s:2"><div><h3>' + NEXT.h3 + '</h3><p>' + NEXT.p + '</p></div><div class="res-actions"><a class="btn btn-wa" data-wa data-track="result_wa_click" data-where="result_top" data-msg="' + msg.replace(/"/g, "&quot;") + '" href="' + waUrl(msg) + '" rel="noopener">' + NEXT.primary_label + '</a><a class="btn btn-ghost" data-wa data-track="debrief_click" data-where="result_top" data-msg="' + dmsg.replace(/"/g, "&quot;") + '" href="' + waUrl(dmsg) + '" rel="noopener">' + NEXT.secondary_label + '</a></div></div>' +
-      (capture ? '<form class="optin rv-step" id="optin" style="--s:3" novalidate><h3>' + OPTIN.heading + '</h3><p>' + OPTIN.intro + '</p><div class="oi-grid"><label>First name<input name="name" type="text" maxlength="40" autocomplete="given-name" value="' + (state.name || "").replace(/"/g, "&quot;") + '"></label><label>Email<input name="email" type="email" maxlength="120" autocomplete="email"></label><label>WhatsApp number<input name="wa" type="tel" maxlength="30" autocomplete="tel" placeholder="+971 50 000 0000"></label></div><label class="ck"><input type="checkbox" name="c_email"> <span>' + OPTIN.consent_email + '</span></label><label class="ck"><input type="checkbox" name="c_wa"> <span>' + OPTIN.consent_whatsapp + '</span></label><label class="ck"><input type="checkbox" name="c_share"> <span>' + OPTIN.consent_share + '</span></label><p class="oi-note">' + OPTIN.privacy_note + ' <a href="privacy-and-discretion.html">Privacy and discretion</a></p><div class="res-actions"><button class="btn btn-ink" type="submit">Send</button><button class="btn-link" type="button" id="oi-no">' + OPTIN.decline_label + '</button></div><p class="dl-st" id="oi-st" aria-live="polite"></p></form>' : "") +
-      '<div class="note-card rv-step" style="--s:3"><div class="note-head"><img src="assets/sawaf.jpg" alt="Mohamed El Sawaf" width="72" height="90"><div><p class="eyebrow">A note from the founder</p><h3>' + NOTE_LABEL + '</h3></div></div>' +
-      '<p class="note-greet">' + note.greet + "</p>" + paras + '<p class="note-sign"><b>' + note.sign + "</b><span>" + note.role + "</span></p></div>" +
-      '<div class="plays rv-step" style="--s:4"><div class="play"><h4>Sound like</h4><p>' + plays.sound + '</p></div><div class="play"><h4>Show up here</h4><p>' + plays.show + '</p></div><div class="play"><h4>Prove it with</h4><p>' + plays.prove + "</p></div></div>" +
-      '<div class="res-two rv-step" style="--s:5"><div class="traits-card"><h3>Your five currents</h3><p class="sub">Normalised from your 20 answers (0 to 100). They chose your archetype.</p>' + bars + "</div>" +
-      '<div class="second-card"><h3>Your secondary current</h3><p class="sc-name">' + s.name + "</p><p>" + s.essence + " Its notes, " + s.words.join(", ") + ", colour your brand at the edges.</p>" +
-      '<a class="btn-link" href="archetypes.html#' + s.id + '">Read about ' + s.name + " →</a></div></div>" +
-      '<div class="plan-card rv-step" style="--s:6"><h3>Your first 7 days</h3><ol class="plan">' + days + "</ol></div>" +
-      '<div class="res-cta-card rv-step" style="--s:7"><h3>Now turn it into a position.</h3><p>Send your result to our team and tell us the one room you want to be known in. We will start there.</p>' +
+      '<div class="fusion"><div class="fx">Wellness × Brand</div><p>' + p.fusion + "</p></div></div>" +
+      '<div class="traits-card rv-step" style="--s:2"><h3>Your five currents</h3><p class="sub">From your 20 answers. They chose your archetype. A direction, not a measurement.</p>' + bars + "</div>" +
+      '<div class="dl-card dl-main rv-step" style="--s:2"><div><span class="dl-kicker">Free · ten pages</span><h3>The details are in your full report</h3><p>Ten branded pages, built from your answers. Download it to read it all, keep it and come back to it in a month.</p><ul class="inside">' + inside + '</ul></div><div class="dl-act"><button class="btn btn-ink btn-lg" id="btn-pdf" type="button">Download your full report (PDF)</button><button class="btn btn-ghost" id="btn-share" type="button">Share this archetype</button><button class="btn btn-ghost" id="btn-png" type="button">Download share card</button></div><p class="dl-st" id="dl-st" aria-live="polite"></p></div>' +
+      '<div class="next-card rv-step" style="--s:3"><div><h3>' + NEXT.h3 + '</h3><p>' + NEXT.p + '</p></div><div class="res-actions"><a class="btn btn-wa" data-wa data-track="result_wa_click" data-where="result_top" data-msg="' + msg.replace(/"/g, "&quot;") + '" href="' + waUrl(msg) + '" rel="noopener">' + NEXT.primary_label + '</a><a class="btn btn-ghost" data-wa data-track="debrief_click" data-where="result_top" data-msg="' + dmsg.replace(/"/g, "&quot;") + '" href="' + waUrl(dmsg) + '" rel="noopener">' + NEXT.secondary_label + '</a></div></div>' +
+      (capture ? '<form class="optin rv-step" id="optin" style="--s:4" novalidate><h3>' + OPTIN.heading + '</h3><p>' + OPTIN.intro + '</p><div class="oi-grid"><label>First name<input name="name" type="text" maxlength="40" autocomplete="given-name" value="' + (state.name || "").replace(/"/g, "&quot;") + '"></label><label>Email<input name="email" type="email" maxlength="120" autocomplete="email"></label><label>WhatsApp number<input name="wa" type="tel" maxlength="30" autocomplete="tel" placeholder="+971 50 000 0000"></label></div><label class="ck"><input type="checkbox" name="c_email"> <span>' + OPTIN.consent_email + '</span></label><label class="ck"><input type="checkbox" name="c_wa"> <span>' + OPTIN.consent_whatsapp + '</span></label><label class="ck"><input type="checkbox" name="c_share"> <span>' + OPTIN.consent_share + '</span></label><p class="oi-note">' + OPTIN.privacy_note + ' <a href="privacy-and-discretion.html">Privacy and discretion</a></p><div class="res-actions"><button class="btn btn-ink" type="submit">Send</button><button class="btn-link" type="button" id="oi-no">' + OPTIN.decline_label + '</button></div><p class="dl-st" id="oi-st" aria-live="polite"></p></form>' : "") +
+      '<div class="res-cta-card rv-step" style="--s:5"><h3>Now turn it into a position.</h3><p>Send your result to our team and tell us the one room you want to be known in. We will start there.</p>' +
       '<div class="res-actions"><a class="btn btn-wa" data-wa data-track="result_wa_click" data-where="result_bottom" href="' + waUrl(msg) + '" data-msg="' + msg.replace(/"/g, "&quot;") + '" rel="noopener">Send my result to our team</a>' +
       '<a class="btn btn-ghost-light" data-wa data-track="debrief_click" data-where="result_bottom" href="' + waUrl(dmsg) + '" data-msg="' + dmsg.replace(/"/g, "&quot;") + '" rel="noopener">Book a 20-minute debrief</a>' +
       '<button class="btn btn-ghost-light" id="btn-retake" type="button">Retake</button></div>' +
-      '<p class="res-foot">' + (capture ? "Your answers stay in this browser unless you choose to share them above." : "Your answers stayed in this browser.") + ' <button class="btn-link light" id="btn-clear" type="button">Clear my data</button> Not a clinical or hiring test: a starting point for a conversation about your brand. <a href="archetypes.html#' + p.id + '">Read about ' + p.name + "</a> · <a href=\"archetypes.html\">All 12 archetypes</a></p></div>";
+      '<p class="res-foot">' + (capture ? "Your answers stay in this browser unless you choose to share them above." : "Your answers stayed in this browser.") + ' <button class="btn-link light" id="btn-clear" type="button">Clear my data</button> A starting point for a conversation about your brand, not a clinical or hiring test. <a href="archetype-' + p.id + '.html">Read about ' + p.name + '</a> · <a href="archetypes.html">All 12 archetypes</a></p></div>';
     requestAnimationFrame(function () {
       setTimeout(function () { $$(".tbar i", out).forEach(function (el) { el.style.inlineSize = el.dataset.w + "%"; }); }, 200);
       if (animate && !reduced) { countUp(out); burst(); }
