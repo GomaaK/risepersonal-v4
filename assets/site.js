@@ -38,7 +38,7 @@
       Object.keys(m).forEach(function (k) { if (p[k] !== undefined) body.append(m[k], typeof p[k] === "object" ? JSON.stringify(p[k]) : String(p[k])); });
       return fetch(CFG.captureForm.action, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body });
     }
-    return fetch(CFG.captureUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(p), mode: "cors" }).then(function (r) { if (!r.ok) throw new Error("bad"); });
+    return fetch(CFG.captureUrl, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(p), mode: "cors", redirect: "follow" }).then(function (r) { return r.json(); }).then(function (j) { if (!j || !j.ok) throw new Error("bad"); });
   }
   function gate(o) {
     var lead = getLead();
@@ -63,7 +63,7 @@
       if (email && !okE) { st.textContent = "That email does not look right. Please check it."; f.elements.email.focus(); return; }
       if (wa && !okW) { st.textContent = "That number does not look right. Please add the country code."; f.elements.wa.focus(); return; }
       var ctx = o.context ? o.context() : {};
-      var payload = { source: "risepersonal.com", test: o.test, submitted: new Date().toISOString(), name: name, email: okE ? email : "", whatsapp: okW ? wa : "", marketing_opt_in: !!f.elements.mk.checked, result: ctx.result || "", ref: (new URLSearchParams(location.search)).get("ref") || "" };
+      var payload = { source: "risepersonal.com", test: o.test, submitted: new Date().toISOString(), name: name, email: okE ? email : "", whatsapp: okW ? wa : "", marketing_opt_in: !!f.elements.mk.checked, result: ctx.result || "", ref: "", invited_by: invitedBy(), my_ref: myRef(), page: location.pathname.replace(/^\//, "") || "home" };
       busy = true; st.textContent = "One moment…";
       sendLead(payload).then(function () {
         var l = { name: name, email: payload.email, whatsapp: payload.whatsapp }; try { localStorage.setItem(LEADKEY, JSON.stringify(l)); } catch (e2) {}
@@ -71,7 +71,46 @@
       }).catch(function () { st.textContent = "That did not go through. Please try again, or message us on WhatsApp."; busy = false; });
     });
   }
-  window.RP = { gate: gate, gateEnabled: gateEnabled, getLead: getLead, WA: WA, reduced: reduced, $: $, $$: $$, waUrl: waUrl, setWa: setWa, DEFAULT_MSG: DEFAULT_MSG, track: track, CFG: CFG };
+
+  /* ---------- invites, once-per-person, journey ---------- */
+  function myRef() {
+    try { var r = localStorage.getItem("rp_ref"); if (!r) { r = Math.random().toString(36).slice(2, 8); localStorage.setItem("rp_ref", r); } return r; } catch (e) { return ""; }
+  }
+  function invitedBy() { try { return localStorage.getItem("rp_inv") || ""; } catch (e) { return ""; } }
+  (function () { try { var q = (new URLSearchParams(location.search)).get("ref"); if (q && /^[a-z0-9]{4,12}$/i.test(q) && q !== localStorage.getItem("rp_ref") && !localStorage.getItem("rp_inv")) localStorage.setItem("rp_inv", q); } catch (e) {} })();
+  var RETAKE_DAYS = 90;
+  function slugNow() { return (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, ""); }
+  function doneAt(slug) { try { return parseInt(localStorage.getItem("rp_done_" + slug) || "0", 10) || 0; } catch (e) { return 0; } }
+  function markDone(slug) { try { localStorage.setItem("rp_done_" + slug, String(Date.now())); } catch (e) {} }
+  function retakeOn(slug) { var t = doneAt(slug); if (!t) return null; var d = new Date(t + RETAKE_DAYS * 864e5); return d > new Date() ? d : null; }
+  function fmtDate(d) { return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }); }
+  function nextTests(cur, n) {
+    var L = (CFG.tests || []).filter(function (t) { return t.slug !== cur; });
+    var open = L.filter(function (t) { return !doneAt(t.slug); }); return (open.length ? open : L).slice(0, n || 2);
+  }
+  function nextHTML(cur) {
+    var N = nextTests(cur, 2); if (!N.length) return "";
+    return '<section class="nexts rv-step" aria-labelledby="nx-h"><h3 id="nx-h">Your next step on the journey</h3><div class="nx-grid">' + N.map(function (t) { return '<a class="nx" href="' + t.slug + '.html" data-track="next_test" data-where="' + cur + '"><span class="nx-tag">' + esc2(t.tag) + ' · ' + esc2(t.time) + '</span><b>' + esc2(t.h1) + '</b><span>' + esc2(t.blurb) + '</span><i aria-hidden="true">→</i></a>'; }).join("") + "</div></section>";
+  }
+  function inviteHTML(title) {
+    return '<section class="invite rv-step" aria-labelledby="inv-h"><div><h3 id="inv-h">Know someone who should take this?</h3><p>Send them the link. It is free and takes a few minutes.</p></div><div class="res-actions"><a class="btn btn-wa" id="inv-wa" data-track="invite_wa" rel="noopener" href="#">Send on WhatsApp</a><a class="btn btn-ghost" id="inv-li" data-track="invite_li" rel="noopener" target="_blank" href="#">Share on LinkedIn</a><button class="btn btn-ghost" id="inv-cp" data-track="invite_copy" type="button">Copy link</button></div><p class="dl-st" id="inv-st" aria-live="polite"></p></section>';
+  }
+  function wireInvite(title, mins) {
+    var slug = slugNow(), u = location.origin + location.pathname.replace(/[^/]*$/, "") + slug + ".html?ref=" + myRef();
+    var txt = "I just took the " + title + " from Rise Personal. It is free and takes about " + mins + ". Try it: " + u;
+    var wa = $("#inv-wa"), li = $("#inv-li"), cp = $("#inv-cp"), st = $("#inv-st"); if (!wa) return;
+    wa.href = "https://wa.me/?text=" + encodeURIComponent(txt); li.href = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(u);
+    cp.addEventListener("click", function () { var d = function () { st.textContent = "Link copied. Paste it anywhere."; }; if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(u).then(d, d); else { var ta = document.createElement("textarea"); ta.value = u; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} ta.remove(); d(); } });
+  }
+  /* test hub: show what is done and what is next */
+  function hubInit() {
+    var cards = $$("[data-test]"); if (!cards.length) return; var done = 0, first = null;
+    cards.forEach(function (c) { var s = c.dataset.test; if (doneAt(s)) { done++; c.classList.add("is-done"); var b = $(".tc-state", c); if (b) b.textContent = "Done"; } else if (!first) first = c; });
+    if (first) { first.classList.add("is-next"); var b2 = $(".tc-state", first); if (b2) b2.textContent = done ? "Next for you" : "Start here"; }
+    var pr = $("#hub-progress"); if (pr) { pr.textContent = done + " of " + cards.length + " done"; var f = $("#hub-fill"); if (f) f.style.inlineSize = Math.round(done / cards.length * 100) + "%"; }
+  }
+  document.addEventListener("DOMContentLoaded", hubInit);
+  window.RP = { myRef: myRef, invitedBy: invitedBy, doneAt: doneAt, markDone: markDone, retakeOn: retakeOn, fmtDate: fmtDate, nextHTML: nextHTML, inviteHTML: inviteHTML, wireInvite: wireInvite, slugNow: slugNow, gate: gate, gateEnabled: gateEnabled, getLead: getLead, WA: WA, reduced: reduced, $: $, $$: $$, waUrl: waUrl, setWa: setWa, DEFAULT_MSG: DEFAULT_MSG, track: track, CFG: CFG };
   if (CFG.plausibleDomain) { loadAnalytics(); track("pageview_ready", {}); }
   document.documentElement.classList.remove("no-js");
   setWa(DEFAULT_MSG);
