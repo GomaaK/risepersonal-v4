@@ -19,10 +19,10 @@ We are based in Dubai and work remotely with clients in the UAE, Saudi Arabia, t
 Start with the free Brand DNA Report, message our team on WhatsApp, or ask for a private 20-minute call. We price by scope of work, not by likes or followers. We confirm scope, timing and price in writing before you commit. We do not promise followers, rankings or revenue.
 
 **Is my information safe?**
-We sign an NDA before we hear your brief. We never name a client, quote you or show your work without your written approval. The website sets no cookies and loads no third-party scripts. The Brand DNA Report runs in your browser and sends nothing to us. If you message us on WhatsApp or email, our team sees those messages, and we delete them if you ask. Our privacy and discretion page has the detail.
+We sign an NDA before we hear your brief. We never name a client, quote you or show your work without your written approval. The website sets no cookies and loads no third-party scripts. The Brand DNA Report is worked out in your browser, and we receive only the name and contact details you give us. If you message us on WhatsApp or email, our team sees those messages, and we delete them if you ask. Our privacy and discretion page has the detail.
 
 **What is the Brand DNA Report?**
-A free quiz of 22 taps, about four minutes. It gives you your brand archetype, a secondary archetype, your three words, five trait scores, what to work on, a note from the founder and a seven-day plan, in a ten-page PDF. No sign-up is needed and your answers stay in your browser. It is a positioning tool, not a clinical or hiring test.
+A free quiz of 22 taps, about four minutes. It gives you your brand archetype, a secondary archetype, your three words, five trait scores, what to work on, a note from the founder and a seven-day plan, in a ten-page PDF. Your answers stay in your browser, and we ask only for your first name and an email or WhatsApp number to show your result. It is a positioning tool, not a clinical or hiring test.
 
 **How long before I see results?**
 Some changes are quick to see, such as a clearer story, a rewritten profile and a prepared introduction. Reputation itself grows more slowly and depends on how often you are in the right rooms. We give you a timing estimate in writing before you commit. We do not promise followers, rankings or revenue.
@@ -104,7 +104,7 @@ Rise Personal is not for people who want fast attention at any cost, or a large 
 If we think we are not the right fit, we will tell you in the first conversation.
 
 ## The free first step
-You can begin without speaking to anyone. The Brand DNA Report takes about four minutes, runs in your browser and sends nothing to us. It gives you your archetype and your three words, and a ten-page PDF with a seven-day plan.
+You can begin without speaking to anyone. The Brand DNA Report takes about four minutes, is worked out in your browser, and we receive only the name and contact details you give us. It gives you your archetype and your three words, and a ten-page PDF with a seven-day plan.
 
 ## Questions
 **How long does an engagement take?**
@@ -353,7 +353,7 @@ Every engagement starts under an NDA, signed before you describe the brief. We n
 
 ## How to start in the UAE
 You can start without committing to anything. We confirm scope, timing and price in writing before you commit.
-- Take the free Brand DNA Report. It takes about four minutes and nothing leaves your browser.
+- Take the free Brand DNA Report. It takes about four minutes and your answers stay on your device.
 - Message our team on WhatsApp with one line about where you want to be known.
 - Ask for a private 20-minute intro call through WhatsApp.
 
@@ -418,7 +418,7 @@ We meet by video and on WhatsApp, and by email if you prefer. A sister company i
 
 ## How to start
 You can start without commitment. We confirm scope, timing and price in writing before you decide.
-- Take the free Brand DNA Report. It takes about four minutes and nothing leaves your browser.
+- Take the free Brand DNA Report. It takes about four minutes and your answers stay on your device.
 - Message our team on WhatsApp with one line about where you want to be known.
 - Ask for a private 20-minute intro call through WhatsApp.
 
@@ -475,7 +475,7 @@ We start by listening. Then we write down your voice and values in a blueprint y
 
 ## A practical way to start
 Start small if you prefer. The free Brand DNA Report takes about four minutes. Then talk to us about your goals, and we confirm scope, timing and price in writing before you commit.
-- Take the Brand DNA Report. It runs in your browser and sends nothing to us.
+- Take the Brand DNA Report. It is worked out in your browser, and we receive only the name and contact details you give us.
 - Message our team on WhatsApp with one line about who you want to be known by.
 - Ask for a private 20-minute intro call through WhatsApp.
 
@@ -523,7 +523,7 @@ We help you write in your own voice, from your own words and notes. You approve 
 The room still matters. A conference panel, a client roundtable or a professional association talk gives you credibility that a post cannot. We help you choose the few that fit.
 
 ## Data protection, stated plainly
-We work with European data protection rules in mind. Today the site sets no cookies and loads no third-party scripts or fonts. The Brand DNA Report runs entirely in your browser and sends nothing to us.
+We work with European data protection rules in mind. Today the site sets no cookies and loads no third-party scripts or fonts. The Brand DNA Report is worked out in your browser, and we receive only the name and contact details you give us.
 If you message us on WhatsApp or by email, our team sees those messages. We keep them only as long as needed to reply and to work together, and we delete them if you ask. If your organisation has specific data requirements, tell us before you share anything and we will answer in writing.
 We are not a law firm and this is not legal advice. Our privacy and discretion page sets out the detail.
 
@@ -543,7 +543,7 @@ Yes. We work remotely with clients in Europe, as well as in the UAE, Saudi Arabi
 Yes. You can use email and video calls. We offer WhatsApp because many clients prefer it, not because you must.
 
 **Is the Brand DNA Report compliant with GDPR?**
-It runs in your browser and sends nothing to us, so we receive no personal data from it. We cannot give legal advice. If you send us your result, that message is then seen by our team.
+It is worked out in your browser, and we receive only the name and contact details you give us. We cannot give legal advice. If you send us your result, that message is then seen by our team.
 
 **Can you help me be known in the Gulf?**
 We can help you prepare your story and your presence, and think through which rooms matter. We do not promise specific introductions or deals.
@@ -700,20 +700,25 @@ Last reviewed: 2026-10-30
 
 This page describes how the site and our team handle information today, in plain words. If anything changes, we will say so here first.
 
-Short answer: Today the Rise Personal website sets no cookies, loads no third-party scripts or fonts, and the Brand DNA Report runs entirely in your browser and sends nothing to us. If you message us on WhatsApp or email, our team sees those messages. Client work is confidential: we sign an NDA before we hear the brief.
+Short answer: The Rise Personal website sets no cookies and loads no third-party scripts or fonts. Your test answers are worked out in your browser. To show you a result we ask for your first name and an email or WhatsApp number, and we receive those, the name of the test and your result. Client work is confidential: we sign an NDA before we hear the brief.
 
-## What we collect today
-The website itself does not collect your name, your email address or your answers. It has no sign-up form, no analytics and no advertising tools. It sets no cookies and loads no scripts or fonts from other companies. The fonts are served from our own site.
-Like any website, the service that hosts it handles the technical request your browser makes in order to show you a page, which includes your IP address. We do not add tracking on top of that, and we do not use it to identify you.
-The only information we receive is what you choose to send us, by WhatsApp or email.
+## What we collect
+The website sets no cookies, loads no analytics or advertising tools and loads no scripts or fonts from other companies. The fonts are served from our own site.
+Like any website, the service that hosts it handles the technical request your browser makes to show you a page, which includes your IP address. We do not add tracking on top of that.
+When you take one of the free tests we ask for your first name and an email or a WhatsApp number. We receive those, the name of the test, and your result (for example your archetype and three words). If you tick the optional box, we may also send you occasional notes. We receive nothing else about you.
 
 ## What stays on your device
 Some features keep small pieces of information in your browser's own storage on your device. This is not a cookie and it is not sent to us. The role you pick on the home page is kept for the length of your visit. The Brand DNA Report keeps your progress and your result on your device so that you can pick up where you left off.
 You can remove this at any time by clearing the site data for risepersonal.com in your browser settings.
 
-## The Brand DNA Report
-The report works out your archetype in your browser. Your answers, your first name if you enter one, and your result are not sent to us. The PDF and the share card are made on your device and saved to your device.
-If you choose to message us about your result, for example by pressing a WhatsApp button, that message is sent through WhatsApp and our team will see whatever it contains. Look at the message before you send it. You can edit it.
+## How the tests work
+The test answers are scored in your browser. They stay on your device and are not sent to us. We receive only your name, your contact details, the test you took and your result. The PDF and the share card are made on your device and saved to your device.
+If you choose to message us about your result, for example by pressing a WhatsApp button, that message goes through WhatsApp and our team will see what it contains. Look at the message before you send it. You can edit it.
+
+## The free tests and your details
+We ask for your name and a way to reach you so that the free tests lead to a real conversation. We use your details to show you your result, to follow up with you about it, and, only if you tick the separate box, to send you occasional notes from the team. We do not sell your details and we do not share them outside the team.
+Your details are stored in a private Google Sheet that only the Rise Personal team can open. We keep your details only as long as we need them to follow up and to work with you, and we delete them when you ask.
+You can ask what we hold about you, ask us to correct it or ask us to delete it, by writing to Authentic@risepersonal.com or by WhatsApp. We will do it and tell you when it is done. If you gave us an email address and want to stop the occasional notes, say so and we will stop them.
 
 ## Who sees your messages
 If you message us on WhatsApp or write to Authentic@risepersonal.com, our team sees those messages. We do not sell them and we do not share them outside the team. We share them inside the team only as far as the work needs.
@@ -732,9 +737,9 @@ Messages that remain in your own WhatsApp or email account are yours to remove.
 
 ## Third parties
 The site loads nothing from third parties. WhatsApp and email are third-party services that you choose to use when you contact us, and they have their own privacy terms. The site also links to the websites of companies in our ecosystem. Those sites have their own rules, which apply once you leave this one.
+The details you give us in the free tests are stored in a private Google Sheet that only the Rise Personal team can open. That service holds them for us and we do not use it for anything else.
 
 ## If this changes
-We plan to add optional features later, such as an email sign-up to receive your report and simple visit statistics. If we do, we will update this page before they go live. We will say what is collected, why, who sees it and how to say no, and we will ask for your consent where it is needed. Nothing will be switched on before this page says so.
 
 ## Contact
 Questions about this page or about your information: WhatsApp us at +971 50 683 2835 or write to Authentic@risepersonal.com.
@@ -743,8 +748,8 @@ Questions about this page or about your information: WhatsApp us at +971 50 683 
 **Does the website use cookies?**
 No. It sets no cookies. A few features keep small items in your browser storage on your device, as described above, and they are not sent to us.
 
-**Does the Brand DNA Report send my answers to you?**
-No. It runs in your browser. We receive something only if you choose to send it to us yourself.
+**Do the tests send my answers to you?**
+Your answers are scored in your browser and stay on your device. We receive your first name, your email or WhatsApp number, the name of the test and your result, because we ask for them before showing your result.
 
 **Do you use Google Analytics or social media pixels?**
 No. The site loads no analytics, advertising or social media scripts.
@@ -1456,7 +1461,7 @@ Working weeks, prayer times, public holidays and the hours of Ramadan vary by co
 
 ## Where online presence fits
 When someone hears your name, they often look you up. A clear profile, a consistent biography and a few pieces that show how you think make that check reassuring. They do not replace the room. They make it easier for the people who vouch for you to be right.
-That is why our method starts in the room, then moves to the record, then to the screen. If you want to see where you stand, the free Brand DNA Report is a short, private place to start, and nothing is sent to us.
+That is why our method starts in the room, then moves to the record, then to the screen. If you want to see where you stand, the free Brand DNA Report is a short, private place to start, and we receive only your name and contact details.
 
 ## What to avoid
 - Treating a gathering as a sales opportunity.
@@ -1665,7 +1670,7 @@ No. It describes how you are received and how you choose to communicate, not a f
 Yes. Most people have a primary and a secondary, and the Report shows both.
 
 **Does the report store my answers?**
-No. It runs in your browser and sends nothing to us.
+No. It is worked out in your browser, and we receive only the name and contact details you give us.
 
 ---
 
