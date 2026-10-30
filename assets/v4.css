@@ -679,3 +679,7 @@ body.menu-open{overflow:hidden}
 .retake-note{color:var(--muted);font-size:.95rem}.retake-note.light{color:rgba(255,255,255,.85)}
 .gate{box-shadow:0 36px 70px -46px rgba(26,26,26,.6)}
 @media print{.nexts,.invite,.tstrip,.hometests{display:none!important}}
+
+.founder-link{margin:1rem 0 0}
+
+.hero .eyebrow{font-size:max(.78rem,12px)}
